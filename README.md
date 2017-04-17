@@ -3,6 +3,7 @@
 
 A monolithic beverage vending application in the Death Star Canteen.
 The application currently serves the following beverages:
+
 - Tea
 - Coffee
 
