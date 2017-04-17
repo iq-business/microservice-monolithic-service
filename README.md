@@ -9,8 +9,8 @@ The application currently serves the following beverages via a RESTful API:
 
 ----------------------------
 ## Pre-requisites to build the application from source:
-- Java Jdk 1.8
-- Maven 3.3 or greater
+1. Java Jdk 1.8
+2. Maven 3.3 or greater
 
 ----------------------------
 ## Instructions to build the application from source:
