@@ -16,7 +16,7 @@ The application currently serves the following beverages:
 ## Instructions to build the application from source:
 
 ```
-   > mvn clean build
+   > mvn clean install
 ```
 
 ----------------------------
