@@ -11,6 +11,9 @@ public class Beverage {
     private String description = "";
     private BigDecimal price = BigDecimal.ZERO;
 
+    public Beverage() {
+    }
+
     public Beverage(String name, String description, BigDecimal price) {
         this.name = name;
         this.description = description;
