@@ -3,6 +3,8 @@ package net.iqbusiness.masterclass.beveragemaker.webservices;
 import com.google.gson.Gson;
 import net.iqbusiness.masterclass.beveragemaker.model.Beverage;
 import net.iqbusiness.masterclass.beveragemaker.repository.BeverageRepository;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 import javax.ws.rs.GET;
 import javax.ws.rs.Path;
@@ -18,10 +20,13 @@ import javax.ws.rs.core.Response;
 @Path("/beverage")
 public class BeverageMakerWebService {
 
+    private static final Logger logger = LogManager.getLogger(BeverageMakerWebService.class);
+
     @GET
     @Produces(MediaType.APPLICATION_JSON)
     public Response makeBeverage(@QueryParam(value="type") String beverageType) {
 
+        logger.info("Called makeBeverage - beverageType: {}", beverageType);
         Gson gson = new Gson();
         if(beverageType != null ){
 
@@ -29,10 +34,12 @@ public class BeverageMakerWebService {
                 case "tea" :
                     Beverage tea = BeverageRepository.getTea();
                     String teaDetails = gson.toJson(tea);
+                    logger.info("Done makeBeverage() : {}", teaDetails);
                     return Response.ok(teaDetails, MediaType.APPLICATION_JSON).build();
                 case "coffee" :
                     Beverage coffee = BeverageRepository.getCoffee();
                     String coffeeDetails = gson.toJson(coffee);
+                    logger.info("Done makeBeverage() : {}", coffeeDetails);
                     return Response.ok(coffeeDetails, MediaType.APPLICATION_JSON).build();
                 default:
                     return Response.status(Response.Status.NOT_FOUND).build();
