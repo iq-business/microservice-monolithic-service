@@ -1,4 +1,3 @@
-----------------------------
 # Beverage Maker Monolith
 
 A monolithic beverage vending application in the Death Star Canteen.
