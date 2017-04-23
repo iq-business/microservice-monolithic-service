@@ -23,31 +23,26 @@ public class BeverageMakerWebService {
     private static final Logger logger = LogManager.getLogger(BeverageMakerWebService.class);
 
     @GET
+    @Path("/coffee")
     @Produces(MediaType.APPLICATION_JSON)
-    public Response makeBeverage(@QueryParam(value="type") String beverageType) {
+    public Response makeCoffee() {
 
-        logger.info("Called makeBeverage - beverageType: {}", beverageType);
-        Gson gson = new Gson();
-        if(beverageType != null ){
+        logger.info("\n\n\t>>> Request to Monolith to makeCoffee() >>>\n");
+        Beverage coffee = BeverageRepository.getCoffee();
+        String coffeeDetails = new Gson().toJson(coffee);
+        logger.info("\n\n\t<<< Response to makeCoffee(): {} <<<\n", coffeeDetails);
+        return Response.ok(coffeeDetails, MediaType.APPLICATION_JSON).build();
+    }
 
-            switch (beverageType.toLowerCase()){
-                case "tea" :
-                    Beverage tea = BeverageRepository.getTea();
-                    String teaDetails = gson.toJson(tea);
-                    logger.info("Done makeBeverage() : {}", teaDetails);
-                    return Response.ok(teaDetails, MediaType.APPLICATION_JSON).build();
-                case "coffee" :
-                    Beverage coffee = BeverageRepository.getCoffee();
-                    String coffeeDetails = gson.toJson(coffee);
-                    logger.info("Done makeBeverage() : {}", coffeeDetails);
-                    return Response.ok(coffeeDetails, MediaType.APPLICATION_JSON).build();
-                default:
-                    return Response.status(Response.Status.NOT_FOUND).build();
-            }
-        }
-        else {
-            // Oops, beverageType is missing was requested
-            return Response.status(Response.Status.BAD_REQUEST).build();
-        }
+    @GET
+    @Path("/tea")
+    @Produces(MediaType.APPLICATION_JSON)
+    public Response makeTea() {
+
+        logger.info("\n\n\t>>> Request to Monolith to makeTea() >>>\n");
+        Beverage tea = BeverageRepository.getTea();
+        String teaDetails = new Gson().toJson(tea);
+        logger.info("\n\n\t<<< Response to makeTea(): {} <<<\n", teaDetails);
+        return Response.ok(teaDetails, MediaType.APPLICATION_JSON).build();
     }
 }
