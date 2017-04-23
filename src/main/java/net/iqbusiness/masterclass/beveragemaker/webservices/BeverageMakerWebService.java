@@ -17,7 +17,7 @@ import javax.ws.rs.core.Response;
  * Created by abawa on 2017/04/17.
  */
 
-@Path("/beverage")
+@Path("/api")
 public class BeverageMakerWebService {
 
     private static final Logger logger = LogManager.getLogger(BeverageMakerWebService.class);
