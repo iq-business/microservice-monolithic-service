@@ -2,6 +2,7 @@ package net.iqbusiness.masterclass.beveragemaker.repository;
 
 import net.iqbusiness.masterclass.beveragemaker.model.Beverage;
 
+import java.util.Random;
 import java.math.BigDecimal;
 
 /**
@@ -9,11 +10,18 @@ import java.math.BigDecimal;
  */
 public class BeverageRepository {
 
+    private static final int maximumBeveragePrice = 30;
+    private static final int minimumBeveragePrice = 10;
+
     public static Beverage getTea() {
-        return new Beverage("Tea", "Naboo Green Tea", new BigDecimal("18.50"));
+        return new Beverage("Tea", "Naboo Green Tea", BeverageRepository.getRandomPrice());
     }
 
     public static Beverage getCoffee() {
-        return new Beverage("Coffee", "Tatooine Dark Roast", new BigDecimal("23.50"));
+        return new Beverage("Coffee", "Tatooine Dark Roast", BeverageRepository.getRandomPrice());
+    }
+
+    private static BigDecimal getRandomPrice() {
+        return new BigDecimal(new Random().nextInt(maximumBeveragePrice - minimumBeveragePrice + 1) + minimumBeveragePrice);
     }
 }
